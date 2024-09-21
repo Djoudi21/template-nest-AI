@@ -10,7 +10,6 @@ export class GetCurrentUserUseCase {
   ) {}
 
   async execute(getCurrentUserDto: GetCurrentUserDto) {
-    console.log('LALA', this.userRepository);
     // Map the DTO to a domain entity
     const mapper = UserMapperFactory.getMapper('get-current-user');
     const userEntity = mapper.toEntity(getCurrentUserDto);

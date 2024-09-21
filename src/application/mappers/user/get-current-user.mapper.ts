@@ -9,7 +9,6 @@ export class GetCurrentUserMapper {
   }
 
   static toDto(userEntity: UserEntity) {
-    console.log('TOTO', userEntity);
     return {
       id: userEntity.id,
       email: userEntity.email,
