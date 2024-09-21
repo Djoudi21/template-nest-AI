@@ -22,13 +22,7 @@ export class PrismaUserRepository implements IUserRepository {
       where: { id: userId },
     });
     if (!user) return null;
-    // Map the Prisma result to a UserEntity instance
-    return new UserEntity(
-      user.id,
-      user.email,
-      user.password,
-      user.createdAt,
-      user.updatedAt,
-    );
+    const mapper = UserMapperFactory.getMapper('prisma-user');
+    return mapper.toEntity(user);
   }
 }
