@@ -4,7 +4,7 @@ import { InMemoryPasswordHashingService } from '../../application/services/passw
 import { LoginUseCase } from '../../domain/use-cases/auth/login.use-case';
 import { PrismaAuthRepository } from '../repositories/auth/prisma-auth.repository';
 import { PrismaService } from '../database/prisma.service';
-import { PrismaUserRepository } from '../repositories/users/prisma-user.repository';
+import { PrismaUserRepository } from '../repositories/user/prisma-user.repository';
 
 @Module({
   imports: [],
