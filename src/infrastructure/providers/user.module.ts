@@ -1,25 +1,18 @@
 import { Module } from '@nestjs/common';
-import { RegisterUseCase } from '../../domain/use-cases/user/register-use-case.service';
-import { InMemoryPasswordHashingService } from '../../application/services/password-hashing/in-memory-password-hashing.service';
-import { InMemoryUserRepository } from '../repositories/users/in-memory.user.repository';
 import { GetCurrentUserUseCase } from '../../domain/use-cases/user/get-current-user-use-case';
-import { LoginUseCase } from '../../domain/use-cases/user/login.use-case';
+import { PrismaService } from '../database/prisma.service';
+import { PrismaUserRepository } from '../repositories/users/prisma-user.repository';
 
 @Module({
   imports: [],
   providers: [
-    RegisterUseCase,
-    LoginUseCase,
     GetCurrentUserUseCase,
-    {
-      provide: 'PasswordHashingService',
-      useClass: InMemoryPasswordHashingService,
-    },
+    PrismaService,
     {
       provide: 'UserRepository',
-      useClass: InMemoryUserRepository,
+      useClass: PrismaUserRepository,
     },
   ],
-  exports: [RegisterUseCase, LoginUseCase, GetCurrentUserUseCase],
+  exports: [GetCurrentUserUseCase],
 })
 export class UserModule {}

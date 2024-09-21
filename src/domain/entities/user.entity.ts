@@ -4,12 +4,18 @@ export class UserEntity {
   password: string;
   createdAt: Date;
   updatedAt: Date;
-  constructor(id?: string, email?: string, password?: string) {
+  constructor(
+    id?: string,
+    email?: string,
+    password?: string,
+    createdAt?: Date,
+    updatedAt?: Date,
+  ) {
     this.id = id;
     this.email = email;
     this.password = password;
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 
   setPassword(password: string): void {

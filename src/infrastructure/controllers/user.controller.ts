@@ -8,7 +8,7 @@ export class UserController {
     private readonly getCurrentUserUseCase: GetCurrentUserUseCase, // Inject this use case
   ) {}
   @Get(':id')
-  async findOne(@Param() params: any) {
+  async getCurrentUser(@Param() params: any) {
     const getCurrentUserDto = new GetCurrentUserDto();
     getCurrentUserDto.id = params.id; // Assign the ID from the route param
     return await this.getCurrentUserUseCase.execute(getCurrentUserDto);

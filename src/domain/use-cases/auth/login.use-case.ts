@@ -4,11 +4,13 @@ import { IPasswordHashingService } from '../../../application/services/interface
 import { UserMapperFactory } from '../../../application/mappers/user/user-mapper-factory';
 import { IUserRepository } from '../../../infrastructure/repositories/interfaces/user.repository.interface';
 import { UserEntity } from '../../entities/user.entity';
+import { IAuthRepository } from '../../../infrastructure/repositories/interfaces/auth.repository.interface';
 
 @Injectable()
 export class LoginUseCase {
   constructor(
     @Inject('UserRepository') private readonly userRepository: IUserRepository,
+    @Inject('AuthRepository') private readonly authRepository: IAuthRepository,
     @Inject('PasswordHashingService')
     private readonly passwordHashingService: IPasswordHashingService,
   ) {}

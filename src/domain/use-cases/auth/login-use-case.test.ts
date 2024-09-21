@@ -1,21 +1,27 @@
 import { LoginUseCase } from './login.use-case';
-import { InMemoryUserRepository } from '../../../infrastructure/repositories/users/in-memory.user.repository';
-import { IUserRepository } from '../../../infrastructure/repositories/interfaces/user.repository.interface';
 import { InMemoryPasswordHashingService } from '../../../application/services/password-hashing/in-memory-password-hashing.service';
 import { IPasswordHashingService } from '../../../application/services/interfaces/password-hashing.service';
 import { UserEntity } from '../../entities/user.entity';
 import { LoginDto } from '../../../application/dtos/login-dto';
+import { IAuthRepository } from '../../../infrastructure/repositories/interfaces/auth.repository.interface';
+import { InMemoryAuthRepository } from '../../../infrastructure/repositories/auth/in-memory.auth.repository';
+import { IUserRepository } from '../../../infrastructure/repositories/interfaces/user.repository.interface';
 
 describe('LoginUseCase', () => {
   let loginUseCase: LoginUseCase;
+  let authRepository: IAuthRepository;
   let userRepository: IUserRepository;
   let passwordHashingService: IPasswordHashingService;
   let loginDto: LoginDto;
 
   beforeEach(() => {
-    userRepository = new InMemoryUserRepository();
+    authRepository = new InMemoryAuthRepository();
     passwordHashingService = new InMemoryPasswordHashingService();
-    loginUseCase = new LoginUseCase(userRepository, passwordHashingService);
+    loginUseCase = new LoginUseCase(
+      userRepository,
+      authRepository,
+      passwordHashingService,
+    );
     loginDto = new LoginDto();
   });
 

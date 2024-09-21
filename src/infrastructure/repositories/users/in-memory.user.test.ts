@@ -27,15 +27,4 @@ describe('InMemoryUserRepository', () => {
       expect(result).toBeUndefined();
     });
   });
-
-  describe('save', () => {
-    it('save a user', async () => {
-      const fakeUser = new UserEntity('1', 'john.doe@gmailcom');
-      jest
-        .spyOn(inMemoryUserRepository, 'save')
-        .mockImplementation(async () => fakeUser);
-      const result = await inMemoryUserRepository.save(fakeUser);
-      expect(result.email).toBe(fakeUser.email);
-    });
-  });
 });

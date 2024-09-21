@@ -16,10 +16,4 @@ export class InMemoryUserRepository implements IUserRepository {
     if (!user) return Promise.reject('User not found');
     return Promise.resolve(user);
   }
-
-  async save(user: UserEntity): Promise<UserEntity> {
-    user.id = (this.users.length + 1).toString();
-    this.users.push(user);
-    return user;
-  }
 }

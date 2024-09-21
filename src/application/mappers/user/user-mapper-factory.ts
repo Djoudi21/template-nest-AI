@@ -1,7 +1,8 @@
 import { UserEntity } from '../../../domain/entities/user.entity';
-import { RegisterMapper } from './register.mapper';
 import { GetCurrentUserMapper } from './get-current-user.mapper';
 import { LoginMapper } from './login.mapper';
+import { PrismaUserMapper } from './prisma-user.mapper';
+import { RegisterMapper } from './register.mapper';
 
 type Mapper<T> = {
   toEntity(dto: T): UserEntity;
@@ -10,9 +11,10 @@ type Mapper<T> = {
 
 export class UserMapperFactory {
   private static mappers = {
-    register: RegisterMapper,
     'get-current-user': GetCurrentUserMapper,
+    'prisma-user': PrismaUserMapper,
     login: LoginMapper,
+    register: RegisterMapper,
   };
 
   static getMapper(type: string): Mapper<any> {
