@@ -13,7 +13,7 @@ export class LangChainService implements ILlmService {
 
   constructor() {
     this.model = new ChatOpenAI({
-      model: 'gpt-4',
+      model: process.env.OPENAI_API_MODEL,
       apiKey: process.env.OPENAI_API_KEY,
     });
   }
